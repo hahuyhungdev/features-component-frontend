@@ -1,6 +1,6 @@
 import gsap, { Power3 } from 'gsap';
 import { useEffect, useRef } from 'react';
-import './App.css';
+import './App.scss';
 
 function Circles() {
   let circleYellow = useRef<HTMLDivElement | null>(null);
@@ -12,7 +12,7 @@ function Circles() {
       // gsap.from(circleYellow.current, { x: 100, duration: 2, ease: Power3.easeOut });
       // gsap.from(circleRed.current, { x: 40, duration: 1, ease: Power3.easeOut, delay: 0.2 });
       // gsap.from(circleBlue.current, { x: 40, duration: 1, ease: Power3.easeOut, delay: 0.4 });
-      tl.to([circleYellow.current, circleRed.current, circleBlue.current], {
+      tl.from([circleYellow.current, circleRed.current, circleBlue.current], {
         x: 100,
         duration: 0.8,
         ease: Power3.easeOut,

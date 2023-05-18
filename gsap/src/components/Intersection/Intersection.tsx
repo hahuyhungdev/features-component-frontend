@@ -1,19 +1,50 @@
-import React, { useEffect, useRef } from 'react';
 import gsap, { Power2 } from 'gsap';
-import People from '../../imgs/people.jpg';
-import './Intersection.scss';
-import { useIntersection } from 'react-use';
-import { CSSRulePlugin } from 'gsap/CSSRulePlugin';
+import { useEffect, useState } from 'react';
 import './Intersection.scss';
 
 export const Intersection = () => {
-  let sectionRef = useRef<HTMLDivElement | null>(null);
-
-  const intersection = useIntersection(sectionRef, {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.3,
+  // let sectionRef = useRef<HTMLDivElement | null>(null);
+  const [activeSection, setActiveSection] = useState('sectionFirst');
+  useEffect(() => {
+    // define the options for the observer
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.3,
+    };
+    // defint the target for the observer
+    const target = document.querySelector('.content')?.querySelectorAll('section') as NodeListOf<HTMLElement>;
+    // define the observer
+    const ActiveSection = (target: HTMLElement) => {
+      let currentSection: HTMLElement | null = null;
+      const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.className);
+            console.log(entry.target.className, entry.isIntersecting);
+            if (currentSection !== entry.target) {
+              currentSection = entry.target as HTMLElement;
+              fadeIn('.fadeIn');
+            }
+          } else if (currentSection === entry.target) {
+            currentSection = null;
+            fadeOut('.fadeIn');
+          }
+        });
+      }, options);
+      sectionObserver.observe(target);
+    };
+    // loop through the sections and observe each one
+    target.forEach((section: any) => {
+      ActiveSection(section);
+    });
   });
+
+  // const intersection = useIntersection(sectionRef, {
+  //   root: null,
+  //   rootMargin: '0px',
+  //   threshold: 0.3,
+  // });
 
   const fadeIn = (element: string) => {
     gsap.to(element, {
@@ -36,7 +67,7 @@ export const Intersection = () => {
     });
   };
 
-  intersection && intersection.isIntersecting ? fadeIn('.fadeIn') : fadeOut('.fadeIn');
+  // intersection && intersection.isIntersecting ? fadeIn('.fadeIn') : fadeOut('.fadeIn');
 
   return (
     <>
@@ -85,14 +116,14 @@ export const Intersection = () => {
             />
           </div>
           <h3>Alara Frank</h3>
-          <p>
+          <p className='fadeIn'>
             Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
             bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu
             consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod
             quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas pretium.
           </p>
         </section>
-        <section ref={sectionRef} className='sectionSecond'>
+        <section className='sectionSecond'>
           <div className='inner'>
             <h3 className='fadeIn'>The talk of what makes a champion.</h3>
             <p className='fadeIn'>
@@ -113,7 +144,7 @@ export const Intersection = () => {
         </section>
         <section className='sectionThird'>
           <h3>New Section</h3>
-          <p>
+          <p className='fadeIn'>
             Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
             bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu
             consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod

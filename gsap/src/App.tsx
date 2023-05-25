@@ -14,6 +14,7 @@ function App() {
       {/* <Hero /> */}
       <Intersection />
       {/* <ScrollTriggers /> */}
+   <h1>main</h1>
     </>
   );
 }

@@ -1,10 +1,10 @@
 // import './App.css';
-import './App.scss';
-import Circles from './Circles';
-import Hero from './components/Hero';
-import Intersection from './components/Intersection';
-import ScrollTriggers from './components/ScrollTriggers';
-import ImageRevealEffect from './components/imageRevealEffect';
+import './App.scss'
+import Circles from './Circles'
+import Hero from './components/Hero'
+import Intersection from './components/Intersection'
+import ScrollTriggers from './components/ScrollTriggers'
+import ImageRevealEffect from './components/imageRevealEffect'
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       {/* <ScrollTriggers /> */}
    <h1>main</h1>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

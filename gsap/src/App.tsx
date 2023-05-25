@@ -14,7 +14,7 @@ function App() {
       {/* <Hero /> */}
       <Intersection />
       {/* <ScrollTriggers /> */}
-   <h1>main</h1>
+      <h1>branch clone</h1>
     </>
   )
 }

@@ -78,43 +78,43 @@ const ScrollTriggers = () => {
       //   duration: 3,
       //   delay: -6,
       // });
-    })
-    tl.to('.square', {
-      x: 500,
-      duration: 5,
-      rotate: 360,
-      scrollTrigger: {
-        trigger: '.square',
-        start: 'top center',
-        end: 'bottom 30%',
-        markers: true,
-        scrub: true,
-        toggleActions: 'restart pause resume reverse'
-      }
-    })
 
-    const spansElement = gsap.utils.toArray('span') as HTMLElement[]
-    spansElement.forEach((span) => {
-      console.log('span', span)
-      gsap.set(span, {
-        color: 'red',
-        height: '30px'
-      })
-      ScrollTrigger.create({
-        trigger: span,
-        start: 'bottom center',
-        end: 'bottom 30%',
-        markers: true,
-        scrub: true,
-        onEnter: () => {
-          span.classList.add('span-active')
-        },
-        onLeave: () => {
-          span.classList.remove('span-active')
-        },
-        onEnterBack: () => {
-          span.classList.add('span-active')
-        }
+      const spansElement = gsap.utils.toArray('span') as HTMLElement[]
+      spansElement.forEach((span) => {
+        console.log('span', span)
+        gsap.set(span, {
+          color: 'red',
+          height: '30px'
+        })
+        // ScrollTrigger.create({
+        //   trigger: span,
+        //   start: 'bottom center',
+        //   end: 'bottom 30%',
+        //   markers: true,
+        //   scrub: true,
+        //   onEnter: () => {
+        //     span.classList.add('span-active')
+        //   },
+        //   onLeave: () => {
+        //     span.classList.remove('span-active')
+        //   },
+        //   onEnterBack: () => {
+        //     span.classList.add('span-active')
+        //   }
+        // })
+        tl.to('.square', {
+          x: 500,
+          duration: 3,
+          rotate: 360,
+          scrollTrigger: {
+            trigger: '.square',
+            start: 'center center',
+            end: '+=' + '400px',
+            markers: true,
+            scrub: true,
+            toggleActions: 'restart pause reverse pause'
+          }
+        })
       })
     })
     return () => ctx.revert()
@@ -169,7 +169,6 @@ const ScrollTriggers = () => {
           dis. Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
           bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu
           consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique.
-          <div className='square' ref={squareRef}></div>
           <span>Nunc mi ipsum faucibus vitae aliquet nec. Eu consequat ac</span>
           Egestas diam in arcu cursus euismod quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis.
           Enim eu turpis egestas pretium. Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. Eget nulla
@@ -204,7 +203,7 @@ const ScrollTriggers = () => {
           etiam dignissim diam quis enim lobortis. Enim sit amet venenatis urna cursus eget. Tellus id interdum velit
           laoreet id. Ac odio tempor orci dapibus. Et ultrices neque ornare aenean euismod elementum nisi. Dolor morbi
         </p>
-
+        <div className='square' ref={squareRef}></div>
         <p>
           non arcu risus quis. Lectus sit amet est placerat in egestas erat imperdiet. Cum sociis natoque penatibus et
           magnis dis. Massa id neque Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu
@@ -218,67 +217,73 @@ const ScrollTriggers = () => {
           non arcu risus quis. Lectus sit amet est placerat in egestas erat imperdiet. Cum sociis natoque penatibus et
           magnis
         </p>
-        <p>
-          dis. Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
-          bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu
-          consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod
-          quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas pretium.
-          Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. Eget nulla facilisi etiam dignissim diam
-          quis enim lobortis. Enim sit amet venenatis urna cursus eget. Tellus id interdum velit laoreet id. Ac odio
-          tempor orci dapibus. Et ultrices neque ornare aenean euismod elementum nisi. Dolor morbi non arcu risus quis.
-          Lectus sit amet est placerat in Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor
-          eu augue ut lectus arcu bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus
-          vitae aliquet nec. Eu consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in
-          arcu cursus euismod quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis
-          egestas pretium. Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. Eget nulla facilisi etiam
-          dignissim diam quis enim lobortis. Enim sit amet venenatis urna cursus eget. Tellus id interdum velit laoreet
-          id. Ac odio tempor orci dapibus. Et ultrices neque ornare aenean euismod elementum nisi. Dolor morbi non arcu
-          risus quis. Lectus sit amet est placerat in egestas erat imperdiet. Cum sociis natoque penatibus et magnis
-          dis. Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
-          bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu
-          consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod
-          quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas pretium.
-          Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. Eget nulla facilisi etiam dignissim diam
-          quis enim lobortis. Enim sit amet venenatis urna cursus eget. Tellus id interdum velit laoreet id. Ac odio
-          tempor orci dapibus. Et ultrices neque ornare aenean euismod elementum nisi. Dolor morbi non arcu risus quis.
-          Lectus sit amet est placerat in aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut
-          lectus arcu bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet
-          nec. Eu consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus
-          euismod quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas
-          pretium. Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. Eget nulla facilisi etiam
-          dignissim diam quis enim lobortis. Enim sit amet venenatis urna cursus eget. Tellus id interdum velit laoreet
-          id. Ac odio tempor orci dapibus. Et ulti. Dolor morbi non arcu risus quis. Lectus sit amet est placerat in
-          egestas erat imperdiet. Cum sociis natoque penatibus et magnis dis. Massa id neque aliquam vestibulum. Nibh
-          praesent tristique magna sit. Auctor eu augue ut lectus arcu bibendum at varius. Nam aliquam sem et tortor
-          consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu consequat ac felis donec et. Vivamus arcu felis
-          bibendum ut tristique. Egestas diam in arcu cursus euismod quis viverra nibh. Donec ac odio tempor orci
-          dapibus ultrices in iaculis. Enim eu turpis egestas pretium. Tortor vitae purus faucibus ornare suspendisse
-          sed nisi lacus sed. Eget nulla facilisi etiam dignissim diam quis enim lobortis. Enim sit amet venenatis urna
-          cursus eget. Tellus id interdum velit laoreet id. Ac odio tempor orci dapibus. Et ultrices neque ornare aenean
-          euismod elementum nisi. Dolor morbi non arcu risus quis. Lectus sit amet est placerat in Massa id neque
-          aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu bibendum at varius. Nam
-          aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu consequat ac felis donec et.
-          Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod quis viverra nibh. Donec ac odio
-          tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas pretium. Tortor vitae purus faucibus ornare
-          suspendisse sed nisi lacus sed. Eget nulla facilisi etiam dignissim diam quis enim lobortis. Enim sit amet
-          venenatis urna cursus eget. Tellus id interdum velit laoreet id. Ac odio tempor orci dapibus. Et ultrices
-          neque ornare aenean euismod elementum nisi. Dolor morbi non arcu risus quis. Lectus sit amet est placerat in
-          egestas erat imperdiet. Cum sociis natoque penatibus et magnis dis. Massa id neque aliquam vestibulum. Nibh
-          praesent tristique magna sit. Auctor eu augue ut lectus arcu bibendum at varius. Nam aliquam sem et tortor
-          consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu consequat ac felis donec et. Vivamus arcu felis
-          bibendum ut tristique. Egestas diam in arcu cursus euismod quis viverra nibh. Donec ac odio tempor orci
-          dapibus ultrices in iaculis. Enim eu turpis egestas pretium. Tortor vitae purus faucibus ornare suspendisse
-          sed nisi lacus sed. Eget nulla facilisi etiam dignissim diam quis enim lobortis. Enim sit amet venenatis urna
-          cursus eget. Tellus id interdum velit laoreet id. Ac odio tempor orci dapibus. Et ultrices neque ornare aenean
-          euismod elementum nisi. Dolor morbi non arcu risus quis. Lectus sit amet est placerat in aliquam vestibulum.
-          Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu bibendum at varius. Nam aliquam sem et
-          tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu consequat ac felis donec et. Vivamus arcu
-          felis bibendum ut tristique. Egestas diam in arcu cursus euismod quis viverra nibh. Donec ac odio tempor orci
-          dapibus ultrices in iaculis. Enim eu turpis egestas pretium. Tortor vitae purus faucibus ornare suspendisse
-          sed nisi lacus sed. Eget nulla facilisi etiam dignissim diam quis enim lobortis. Enim sit amet venenatis urna
-          cursus eget. Tellus id interdum velit laoreet id. Ac odio tempor orci dapibus. Et ultrices neque ornare aenean
-          euismod elementum nisi. Dolor morbi non arcu risus quis. Lectus sit amet est placerat in
-        </p>
+        {Array(10)
+          .fill(0)
+          .map((_, i) => (
+            <p key={i}>
+              dis. Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
+              bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu
+              consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod
+              quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas pretium.
+              Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. Eget nulla facilisi etiam dignissim
+              diam quis enim lobortis. Enim sit amet venenatis urna cursus eget. Tellus id interdum velit laoreet id. Ac
+              odio tempor orci dapibus. Et ultrices neque ornare aenean euismod elementum nisi. Dolor morbi non arcu
+              risus quis. Lectus sit amet est placerat in Massa id neque aliquam vestibulum. Nibh praesent tristique
+              magna sit. Auctor eu augue ut lectus arcu bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc
+              mi ipsum faucibus vitae aliquet nec. Eu consequat ac felis donec et. Vivamus arcu felis bibendum ut
+              tristique. Egestas diam in arcu cursus euismod quis viverra nibh. Donec ac odio tempor orci dapibus
+              ultrices in iaculis. Enim eu turpis egestas pretium. Tortor vitae purus faucibus ornare suspendisse sed
+              nisi lacus sed. Eget nulla facilisi etiam dignissim diam quis enim lobortis. Enim sit amet venenatis urna
+              cursus eget. Tellus id interdum velit laoreet id. Ac odio tempor orci dapibus. Et ultrices neque ornare
+              aenean euismod elementum nisi. Dolor morbi non arcu risus quis. Lectus sit amet est placerat in egestas
+              erat imperdiet. Cum sociis natoque penatibus et magnis dis. Massa id neque aliquam vestibulum. Nibh
+              praesent tristique magna sit. Auctor eu augue ut lectus arcu bibendum at varius. Nam aliquam sem et tortor
+              consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu consequat ac felis donec et. Vivamus arcu felis
+              bibendum ut tristique. Egestas diam in arcu cursus euismod quis viverra nibh. Donec ac odio tempor orci
+              dapibus ultrices in iaculis. Enim eu turpis egestas pretium. Tortor vitae purus faucibus ornare
+              suspendisse sed nisi lacus sed. Eget nulla facilisi etiam dignissim diam quis enim lobortis. Enim sit amet
+              venenatis urna cursus eget. Tellus id interdum velit laoreet id. Ac odio tempor orci dapibus. Et ultrices
+              neque ornare aenean euismod elementum nisi. Dolor morbi non arcu risus quis. Lectus sit amet est placerat
+              in aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu bibendum at
+              varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu consequat ac
+              felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod quis viverra
+              nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas pretium. Tortor vitae
+              purus faucibus ornare suspendisse sed nisi lacus sed. Eget nulla facilisi etiam dignissim diam quis enim
+              lobortis. Enim sit amet venenatis urna cursus eget. Tellus id interdum velit laoreet id. Ac odio tempor
+              orci dapibus. Et ulti. Dolor morbi non arcu risus quis. Lectus sit amet est placerat in egestas erat
+              imperdiet. Cum sociis natoque penatibus et magnis dis. Massa id neque aliquam vestibulum. Nibh praesent
+              tristique magna sit. Auctor eu augue ut lectus arcu bibendum at varius. Nam aliquam sem et tortor
+              consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu consequat ac felis donec et. Vivamus arcu felis
+              bibendum ut tristique. Egestas diam in arcu cursus euismod quis viverra nibh. Donec ac odio tempor orci
+              dapibus ultrices in iaculis. Enim eu turpis egestas pretium. Tortor vitae purus faucibus ornare
+              suspendisse sed nisi lacus sed. Eget nulla facilisi etiam dignissim diam quis enim lobortis. Enim sit amet
+              venenatis urna cursus eget. Tellus id interdum velit laoreet id. Ac odio tempor orci dapibus. Et ultrices
+              neque ornare aenean euismod elementum nisi. Dolor morbi non arcu risus quis. Lectus sit amet est placerat
+              in Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
+              bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu
+              consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod
+              quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas pretium.
+              Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. Eget nulla facilisi etiam dignissim
+              diam quis enim lobortis. Enim sit amet venenatis urna cursus eget. Tellus id interdum velit laoreet id. Ac
+              odio tempor orci dapibus. Et ultrices neque ornare aenean euismod elementum nisi. Dolor morbi non arcu
+              risus quis. Lectus sit amet est placerat in egestas erat imperdiet. Cum sociis natoque penatibus et magnis
+              dis. Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
+              bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu
+              consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod
+              quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas pretium.
+              Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. Eget nulla facilisi etiam dignissim
+              diam quis enim lobortis. Enim sit amet venenatis urna cursus eget. Tellus id interdum velit laoreet id. Ac
+              odio tempor orci dapibus. Et ultrices neque ornare aenean euismod elementum nisi. Dolor morbi non arcu
+              risus quis. Lectus sit amet est placerat in aliquam vestibulum. Nibh praesent tristique magna sit. Auctor
+              eu augue ut lectus arcu bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus
+              vitae aliquet nec. Eu consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam
+              in arcu cursus euismod quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu
+              turpis egestas pretium. Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. Eget nulla
+              facilisi etiam dignissim diam quis enim lobortis. Enim sit amet venenatis urna cursus eget. Tellus id
+              interdum velit laoreet id. Ac odio tempor orci dapibus. Et ultrices neque ornare aenean euismod elementum
+              nisi. Dolor morbi non arcu risus quis. Lectus sit amet est placerat in
+            </p>
+          ))}
       </div>
     </div>
   )

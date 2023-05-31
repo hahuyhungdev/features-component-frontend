@@ -12,8 +12,8 @@ function App() {
       {/* <Circles /> */}
       {/* <ImageRevealEffect />; */}
       {/* <Hero /> */}
-      <Intersection />
-      {/* <ScrollTriggers /> */}
+      {/* <Intersection /> */}
+      <ScrollTriggers />
       <h1>branch clone</h1>
     </>
   )

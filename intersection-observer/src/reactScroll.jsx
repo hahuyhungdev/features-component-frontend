@@ -1,12 +1,10 @@
-import logo from './logo.svg';
-import { useEffect, useState } from 'react';
-import './App.css';
-import { Link, Element } from 'react-scroll';
 import clsx from 'clsx';
+import { Element, Link } from 'react-scroll';
+import './App.css';
 let headers = ['Intro', 'Random Header', 'Another One', 'Javascript', 'Next.js'];
 let bgColors = ['blue', 'red', 'green', 'yellow', 'purple'];
 
-function App() {
+function ReactScroll() {
   return (
     <div className='App'>
       <main className='flex'>
@@ -43,4 +41,4 @@ function App() {
   );
 }
 
-export default App;
+export default ReactScroll;

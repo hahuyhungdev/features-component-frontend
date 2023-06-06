@@ -1,4 +1,4 @@
-import { IICon } from 'types/icons'
+import { IICon } from '../../../types/icons'
 
 export const RectangleIcon = ({ width = 279, height = 8 }: IICon) => {
   return (

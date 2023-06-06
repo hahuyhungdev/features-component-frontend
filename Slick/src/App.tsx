@@ -1,24 +1,20 @@
 // import './App.css';
 import './App.scss'
-import SliderCarousel from './components/SliderCarousel'
-import Slider, { type Settings } from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
-import SliderButton from 'components/SliderButton'
-import {
-  ArrowLeftOutlineIcon,
-  ArrowRight,
-  ArrowRightOutlineIcon,
-  ArrowUp,
-  RankingIcon,
-  RectangleIcon
-} from 'components/icons/'
-import { dataBanner, dataListCard, dataValue } from '_mockdata'
+import Slider, { type Settings } from 'react-slick'
+import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css'
+
 import top1 from './imgs/top1.png'
 import top2 from './imgs/top2.png'
 import top3 from './imgs/top3.png'
-import CalendarNotion from 'components/Calendar'
+
+import { dataBanner, dataMenu, dataValue } from './mockData'
+import SliderButton from './components/SliderButton'
+import { ArrowLeftOutlineIcon, ArrowRight, ArrowRightOutlineIcon, ArrowUp, RectangleIcon } from './components/icons'
+import Popover from './components/Popover'
+import MenuSelectBox from './modules/MenuSelectBox'
+// import MenuSelectBox from './modules/MenuSelectBox'
 
 function App() {
   const settings: Settings = {
@@ -82,9 +78,11 @@ function App() {
     e.preventDefault()
     console.log('click')
   }
+
   return (
     <div className='app'>
-      <CalendarNotion />
+      {/* <CalendarNotion /> */}
+
       <div className='header'>
         <div className='navigation'>
           <div className='navTop'>
@@ -111,33 +109,14 @@ function App() {
 
         <div className='gradient_bottom'></div>
       </div>
-      <div className='listCard'>
-        <Slider {...restSettings} slidesToShow={6} slidesToScroll={3}>
-          {dataListCard.map((item, index) => (
-            <div className='card' key={index}>
-              <div className='containImg'>
-                <img src={item.img} alt={item.title} />
-              </div>
-              <div className='containContent'>
-                <img src={item.img} alt='' />
-                <div className='content'>
-                  <div className='title'>
-                    <h3>{item.title}</h3>
-                  </div>
-                  <div className='description'>
-                    <p>{item.description}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </Slider>
-      </div>
+      <MenuSelectBox />
+
       <div className='ranking'>
         <div className='title'>
           <h1>넥슨 크리에이터즈 랭킹</h1>
           <ArrowRight />
         </div>
+
         <div className='columns'>
           <div className='type1'>
             {dataValue.map((item, index) => (

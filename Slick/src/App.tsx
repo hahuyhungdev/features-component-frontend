@@ -7,8 +7,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import Main from './imgs/main.jpg'
 import Main1 from './imgs/main1.jpg'
 import SliderButton from 'components/SliderButton'
-import { ArrowLeftOutlineIcon } from 'components/arrowLeftOutlineIcon'
-import { ArrowRightOutlineIcon } from 'components/arrowRightOutlineIcon'
+import { ArrowLeftOutlineIcon, ArrowRightOutlineIcon, RectangleIcon } from 'components/icons/'
 
 interface SliderItem {
   img: string
@@ -31,7 +30,19 @@ function App() {
       <SliderButton type='prev'>
         <ArrowLeftOutlineIcon />
       </SliderButton>
-    )
+    ),
+    appendDots: (dots: React.ReactNode) => (
+      <div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', height: '10px' }}>{dots}</div>
+      </div>
+    ),
+    customPaging: () => {
+      return (
+        <div>
+          <RectangleIcon />
+        </div>
+      )
+    }
   }
   const dataBanner: SliderItem[] = [
     {
@@ -41,12 +52,25 @@ function App() {
     {
       img: Main1,
       title: 'Main1'
+    },
+    {
+      img: Main,
+      title: 'Main3'
+    },
+    {
+      img: Main1,
+      title: 'Main4'
     }
   ]
 
   return (
     <div className='app'>
       <div className='header'>
+        <div className='navigation'>
+          <div className='navTop'>
+            <div className='navTop__logo'>logo</div>
+          </div>
+        </div>
         <Slider {...settings}>
           {dataBanner.map((item, index) => (
             <div key={index}>
@@ -54,6 +78,7 @@ function App() {
             </div>
           ))}
         </Slider>
+        <div className='gradient_bottom'></div>
       </div>
     </div>
   )

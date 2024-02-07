@@ -48,7 +48,7 @@ const fetchData = async () => {
   ] as IEventData[]
 }
 
-const CalendarNotion: React.FC = () => {
+export const CalendarNotion: React.FC = () => {
   const [data, setData] = useState<IEventData[]>([])
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null)
 

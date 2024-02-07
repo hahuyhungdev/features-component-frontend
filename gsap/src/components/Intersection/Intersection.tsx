@@ -3,71 +3,51 @@ import { useEffect, useState } from 'react';
 import './Intersection.scss';
 
 export const Intersection = () => {
-  // let sectionRef = useRef<HTMLDivElement | null>(null);
-  const [activeSection, setActiveSection] = useState('sectionFirst');
   useEffect(() => {
     // define the options for the observer
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.3,
+      threshold: 0.8,
     };
     // defint the target for the observer
     const target = document.querySelector('.content')?.querySelectorAll('section') as NodeListOf<HTMLElement>;
+
     // define the observer
     const ActiveSection = (target: HTMLElement) => {
-      let currentSection: HTMLElement | null = null;
-      const sectionObserver = new IntersectionObserver((entries, observer) => {
+      const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.className);
-            console.log(entry.target.className, entry.isIntersecting);
-            if (currentSection !== entry.target) {
-              currentSection = entry.target as HTMLElement;
-              fadeIn('.fadeIn');
+          const tl = gsap.timeline();
+          const pElement = entry.target.querySelector('p');
+          tl.fromTo(
+            pElement,
+            {
+              opacity: 0,
+              y: 20,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 2,
+              ease: Power2.easeOut,
             }
-          } else if (currentSection === entry.target) {
-            currentSection = null;
-            fadeOut('.fadeIn');
+          );
+
+          if (entry.isIntersecting) {
+            console.log(entry.target.className);
+            tl.play();
+          } else {
+            tl.reverse(0);
           }
         });
       }, options);
       sectionObserver.observe(target);
     };
     // loop through the sections and observe each one
-    target.forEach((section: any) => {
+    target.forEach((section) => {
       ActiveSection(section);
     });
-  });
-
-  // const intersection = useIntersection(sectionRef, {
-  //   root: null,
-  //   rootMargin: '0px',
-  //   threshold: 0.3,
-  // });
-
-  const fadeIn = (element: string) => {
-    gsap.to(element, {
-      opacity: 1,
-      y: -60,
-      duration: 1,
-      ease: Power2.easeOut,
-      stagger: {
-        amount: 0.3,
-      },
-    });
-  };
-
-  const fadeOut = (element: string) => {
-    gsap.to(element, {
-      opacity: 0,
-      y: -20,
-      duration: 1,
-      ease: Power2.easeOut,
-    });
-  };
-
-  // intersection && intersection.isIntersecting ? fadeIn('.fadeIn') : fadeOut('.fadeIn');
+  }, []);
 
   return (
     <>
@@ -117,7 +97,7 @@ export const Intersection = () => {
           </div>
           <h3>Alara Frank</h3>
           <p className='fadeIn'>
-            Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
+            1111Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
             bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu
             consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod
             quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas pretium.
@@ -125,9 +105,9 @@ export const Intersection = () => {
         </section>
         <section className='sectionSecond'>
           <div className='inner'>
-            <h3 className='fadeIn'>The talk of what makes a champion.</h3>
+            {/* <h3 className='fadeIn'>The talk of what makes a champion.</h3> */}
             <p className='fadeIn'>
-              Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
+              222222Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
               bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu
               consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod
               quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas pretium.
@@ -145,7 +125,7 @@ export const Intersection = () => {
         <section className='sectionThird'>
           <h3>New Section</h3>
           <p className='fadeIn'>
-            Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
+            333Massa id neque aliquam vestibulum. Nibh praesent tristique magna sit. Auctor eu augue ut lectus arcu
             bibendum at varius. Nam aliquam sem et tortor consequat id. Nunc mi ipsum faucibus vitae aliquet nec. Eu
             consequat ac felis donec et. Vivamus arcu felis bibendum ut tristique. Egestas diam in arcu cursus euismod
             quis viverra nibh. Donec ac odio tempor orci dapibus ultrices in iaculis. Enim eu turpis egestas pretium.

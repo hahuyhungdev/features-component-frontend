@@ -35,7 +35,11 @@ function App() {
       </SliderButton>
     ),
     appendDots: (dots: React.ReactNode) => (
-      <div>
+      <div
+        style={{
+          backgroundColor: 'red'
+        }}
+      >
         <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', height: '10px' }}>{dots}</div>
       </div>
     ),
@@ -108,7 +112,7 @@ function App() {
 
         <div className='gradient_bottom'></div>
       </div>
-      <MenuSelectBox />
+      {/* <MenuSelectBox />
       <CalendarNotion />
 
       <div className='ranking'>
@@ -206,7 +210,7 @@ function App() {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

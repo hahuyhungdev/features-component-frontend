@@ -14,9 +14,19 @@
       <div class="test-advance-inline">
         <span class="inline-text"> Advance Inline </span>
       </div>
+      <span class="test-advance-box">Advance Box</span>
     </div>
+    <button onclick="openModal()">Open Modal</button>
     <div class="modal">
       <div class="modal_content">dasddasdadasas</div>
     </div>
   </body>
+  <script>
+    let isModalOpen = false;
+    function openModal() {
+      document.querySelector(".modal").style.visibility = isModalOpen
+        ? "hidden"
+        : "visible";
+    }
+  </script>
 </html>

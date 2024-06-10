@@ -18,6 +18,7 @@ import { dataBanner, dataListCard, dataValue } from '_mockdata'
 import top1 from './imgs/top1.png'
 import top2 from './imgs/top2.png'
 import top3 from './imgs/top3.png'
+import CalendarNotion from 'components/Calendar'
 
 function App() {
   const settings: Settings = {
@@ -83,6 +84,7 @@ function App() {
   }
   return (
     <div className='app'>
+      <CalendarNotion />
       <div className='header'>
         <div className='navigation'>
           <div className='navTop'>

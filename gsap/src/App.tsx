@@ -2,6 +2,7 @@
 import './App.scss';
 import Circles from './Circles';
 import Hero from './components/Hero';
+import Intersection from './components/Intersection';
 import ImageRevealEffect from './components/imageRevealEffect';
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
     <>
       {/* <Circles /> */}
       {/* <ImageRevealEffect />; */}
-      <Hero />
+      {/* <Hero /> */}
+      <Intersection />
     </>
   );
 }

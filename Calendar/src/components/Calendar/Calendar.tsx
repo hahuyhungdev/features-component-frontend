@@ -6,6 +6,7 @@ import type { BadgeProps } from 'antd'
 import { Badge, Calendar, Modal, Col, Radio, Row, Select, Typography, Button } from 'antd'
 import type { Dayjs } from 'dayjs'
 import type { CellRenderInfo } from 'rc-picker/lib/interface'
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 
 dayjs.extend(dayLocaleData)
 
@@ -24,14 +25,14 @@ const fetchData = async () => {
   // Simulated API response data
   return [
     {
-      date: '2023-06-01',
+      date: '2023-07-01',
       events: [
         { type: 'warning', content: 'This is warning event.' },
         { type: 'success', content: 'This is usual event.' }
       ]
     },
     {
-      date: '2023-06-10',
+      date: '2023-07-10',
       events: [
         { type: 'warning', content: 'This is warning event.' },
         { type: 'success', content: 'This is usual event.' },
@@ -39,14 +40,11 @@ const fetchData = async () => {
       ]
     },
     {
-      date: '2023-06-15',
+      date: '2023-07-15',
       events: [
         { type: 'warning', content: 'This is warning event' },
         { type: 'success', content: 'This is very long usual event。。....' },
-        { type: 'error', content: 'This is error event 1.' },
-        { type: 'error', content: 'This is error event 2.' },
-        { type: 'error', content: 'This is error event 3.' },
-        { type: 'error', content: 'This is error event 4.' }
+        { type: 'error', content: 'This is error event 1.' }
       ]
     }
   ] as IEventData[]
@@ -68,14 +66,19 @@ const CalendarNotion: React.FC = () => {
   const getListData = (value: Dayjs) => {
     const dateString = value.format('YYYY-MM-DD')
     const selectedData = data.find((item: IEventData) => item.date === dateString)
-    return selectedData ? selectedData.events : []
+    return selectedData ? { events: selectedData.events, checked: 'checked' } : { events: [], checked: 'not checked' }
+  }
+  const countCheckedItems = () => {
+    return data.filter((item: IEventData) => item.events.length > 0).length
   }
 
   const dateCellRender = (value: Dayjs) => {
     const listData = getListData(value)
+
     return (
       <ul className='events'>
-        {listData.map((item) => (
+        <li>{listData.checked === 'checked' && <CheckOutlined />}</li>
+        {listData.events.map((item) => (
           <li key={item.content}>
             <Badge status={item.type as BadgeProps['status']} text={item.content} />
           </li>
@@ -112,25 +115,28 @@ const CalendarNotion: React.FC = () => {
           }
 
           return (
-            <div style={{ padding: 8 }}>
-              <Typography.Title level={4}>Custom header</Typography.Title>
-              <h1>{year}</h1>
-              <Row gutter={8}>
-                <Col>
-                  <Button size='small' onClick={decreaseMonth}>
-                    Previous
-                  </Button>
-                </Col>
-                <Col>
-                  <Typography.Text>{monthName}</Typography.Text>
-                </Col>
-                <Col>
-                  <Button size='small' onClick={increaseMonth}>
-                    Next
-                  </Button>
-                </Col>
-              </Row>
-            </div>
+            <>
+              <div style={{ padding: 8 }}>
+                <Typography.Title level={4}>Custom header</Typography.Title>
+                <h1>{year}</h1>
+                <Row gutter={8}>
+                  <Col>
+                    <Button size='small' onClick={decreaseMonth}>
+                      Previous
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Typography.Text>{monthName}</Typography.Text>
+                  </Col>
+                  <Col>
+                    <Button size='small' onClick={increaseMonth}>
+                      Next
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
+              <div>Checked items: {countCheckedItems()}</div>
+            </>
           )
         }}
       />
@@ -140,7 +146,7 @@ const CalendarNotion: React.FC = () => {
           <div>
             <h3>{selectedDate.format('YYYY-MM-DD')}</h3>
             <ul className='events'>
-              {getListData(selectedDate).map((item: any) => (
+              {getListData(selectedDate).events.map((item) => (
                 <li key={item.content}>
                   <Badge status={item.type as BadgeProps['status']} text={item.content} />
                 </li>

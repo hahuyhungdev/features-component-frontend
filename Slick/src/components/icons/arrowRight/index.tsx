@@ -1,5 +1,5 @@
 import React from 'react'
-import { IICon } from 'types/icons'
+import { IICon } from '../../../types/icons'
 
 export const ArrowRight = ({ width = 17, height = 28, className }: IICon) => {
   return (

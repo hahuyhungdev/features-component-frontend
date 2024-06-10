@@ -1,5 +1,5 @@
 import React from 'react'
-import { IICon } from 'types/icons'
+import { IICon } from '../../../types/icons'
 
 export const RankingIcon = ({ width = 400, height = 104, className }: IICon) => {
   return (

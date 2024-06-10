@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './index.css'
+import dayjs from 'dayjs'
+import dayLocaleData from 'dayjs/plugin/localeData'
 import type { BadgeProps } from 'antd'
-import { Badge, Calendar, Modal } from 'antd'
+import { Badge, Calendar, Modal, Col, Radio, Row, Select, Typography, Button } from 'antd'
 import type { Dayjs } from 'dayjs'
 import type { CellRenderInfo } from 'rc-picker/lib/interface'
+
+dayjs.extend(dayLocaleData)
 
 // Function to fetch fake API data
 interface IEventData {
@@ -91,7 +95,46 @@ const CalendarNotion: React.FC = () => {
 
   return (
     <div>
-      <Calendar cellRender={cellRender} onSelect={handleSelect} />
+      <Calendar
+        cellRender={cellRender}
+        onSelect={handleSelect}
+        headerRender={({ value, onChange }) => {
+          const year = value.year()
+          const month = value.month()
+          const monthName = value.format('MMMM')
+
+          const decreaseMonth = () => {
+            onChange(value.month(month - 1))
+          }
+
+          const increaseMonth = () => {
+            onChange(value.month(month + 1))
+          }
+
+          return (
+            <div style={{ padding: 8 }}>
+              <Typography.Title level={4}>Custom header</Typography.Title>
+              <h1>{year}</h1>
+              <Row gutter={8}>
+                <Col>
+                  <Button size='small' onClick={decreaseMonth}>
+                    Previous
+                  </Button>
+                </Col>
+                <Col>
+                  <Typography.Text>{monthName}</Typography.Text>
+                </Col>
+                <Col>
+                  <Button size='small' onClick={increaseMonth}>
+                    Next
+                  </Button>
+                </Col>
+              </Row>
+            </div>
+          )
+        }}
+      />
+
       <Modal open={selectedDate !== null} onCancel={() => setSelectedDate(null)} title='Selected Date' footer={null}>
         {selectedDate && (
           <div>

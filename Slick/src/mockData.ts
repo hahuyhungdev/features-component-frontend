@@ -15,6 +15,14 @@ interface IValueItem {
   percent: number
   img: any
 }
+interface IMenu {
+  category: string
+  label: ILabel[]
+}
+export interface ILabel {
+  label: string
+  checked: boolean
+}
 export const dataBanner: ISliderItem[] = [
   {
     img: Main,
@@ -139,5 +147,38 @@ export const dataValue: IValueItem[] = [
     changeRank: 0.34,
     percent: 34,
     img: Main1
+  }
+]
+export const dataMenu: IMenu[] = [
+  {
+    category: 'category1',
+    label: [
+      { label: '전체', checked: false },
+      { label: '카트라이더:드리프', checked: false },
+      { label: '메이플스토리', checked: true },
+      { label: '히트 2', checked: false },
+      { label: '피파 온라인 4', checked: true },
+      { label: '프레시아 전기', checked: true }
+    ]
+  },
+  {
+    category: 'category2',
+    label: [
+      { label: 'label1', checked: false },
+      { label: 'label2', checked: false },
+      { label: 'label3', checked: false },
+      { label: 'label4', checked: false },
+      { label: 'label5', checked: true }
+    ]
+  },
+  {
+    category: 'category3',
+    label: [
+      { label: 'label1', checked: false },
+      { label: 'label2', checked: false },
+      { label: 'label3', checked: true },
+      { label: 'label4', checked: false },
+      { label: 'label5', checked: false }
+    ]
   }
 ]

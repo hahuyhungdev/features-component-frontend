@@ -7,11 +7,11 @@ type Example1 =
       b: string;
     };
 
-// interface Foo extends Example {
+// interface Foo extends Example1 {
 // An interface can only extend an object type or intersection of object types with statically known members.
 //   c: string;
 // }
-type Foo1 = Example & {
+type Foo1 = Example1 & {
   c: string;
 };
 

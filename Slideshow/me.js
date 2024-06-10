@@ -2,10 +2,10 @@ let listImg = document.querySelectorAll('.list-img div');
 let imgWrap = document.querySelector('.img-wrap img');
 let prevBtn = document.querySelector('.prev');
 let nextBtn = document.querySelector('.next');
+let playAutoBtn = document.querySelector('.auto');
 let showInnerBtn = document.getElementsByTagName('button');
-console.log(showInnerBtn);
+console.log(playAutoBtn);
 
-console.log(listImg, imgWrap, prevBtn, nextBtn);
 let currentIndex = 0;
 
 function updateIndex(index) {
@@ -34,8 +34,29 @@ prevBtn.addEventListener('click', () => {
 });
 // assign event to nextBtn
 nextBtn.addEventListener('click', () => {
-  document.getElementById('main-content').innerHTML = 'hi';
   if (currentIndex == listImg.length - 1) currentIndex = 0;
   else currentIndex++;
   updateIndex(currentIndex);
+});
+
+// auto play
+let autoPlay = false;
+playAutoBtn.addEventListener('click', () => {
+  if (autoPlay) {
+    autoPlay = false;
+    playAutoBtn.innerText = 'Auto';
+  } else {
+    autoPlay = true;
+    playAutoBtn.innerText = 'Stop';
+  }
+  if (autoPlay) {
+    let auto = setInterval(() => {
+      if (currentIndex == listImg.length - 1) currentIndex = 0;
+      else currentIndex++;
+      updateIndex(currentIndex);
+    }, 1500);
+    playAutoBtn.addEventListener('click', () => {
+      clearInterval(auto);
+    });
+  }
 });

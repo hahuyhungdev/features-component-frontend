@@ -14,6 +14,7 @@ type TUser = {
 type TProfile = {
   [P in keyof TUser as `change${Capitalize<P>}`]: string;
 };
+
 //  -------------------------------------------------------------------
 type Fruit = "apple" | "banana" | "orange";
 type TFruit = {

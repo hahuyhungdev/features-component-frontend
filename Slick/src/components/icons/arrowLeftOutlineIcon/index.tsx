@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IICon } from 'types/icons'
+import { IICon } from '../../../types/icons'
 
 export const ArrowLeftOutlineIcon = ({ width = 22, height = 18 }: IICon) => {
   return (

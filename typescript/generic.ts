@@ -27,6 +27,7 @@ type TMyObject = typeof myObjectC1;
 // const access = (str: string) => {
 //   return myObjectC2[str];
 // };
+
 // Note that if you choose this approach, you should add noUncheckedIndexedAccess to your tsconfig, which will give you extra safety when accessing the object.
 
 // Solution 3: Cast the index

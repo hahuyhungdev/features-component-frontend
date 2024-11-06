@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple Defer Script Demo</title>
+    <style>
+      .log-entry {
+        padding: 8px;
+        margin: 5px;
+        background: #f0f0f0;
+        border-left: 4px solid #2196f3;
+      }
+    </style>
+
+    <script>
+      // Logging function to track events
+      function logEvent(message) {
+        const logDiv = document.getElementById("log");
+        const entry = document.createElement("div");
+        entry.className = "log-entry";
+        entry.textContent = `${new Date().toLocaleTimeString()} - ${message}`;
+        logDiv.appendChild(entry);
+        console.log(message);
+      }
+
+      logEvent("Initial HTML parsing started");
+    </script>
+
+    <!-- Defer Script 1 -->
+    <script
+      defer
+      src="data:text/javascript,
+      (function() {
+        const getH1 = document.querySelector('h1');
+        console.log('current, my content:', getH1.textContent);
+          logEvent('Defer Script 1 executed - HTML parsing complete');
+      })();
+    "
+    ></script>
+
+    <!-- Defer Script 2 with a delay -->
+    <script
+      defer
+      src="data:text/javascript,
+      (function() {
+          logEvent('Defer Script 2 executed - HTML parsing complete');
+      })();
+    "
+    ></script>
+  </head>
+  <body>
+    <h1>Simple Defer Script Demo</h1>
+    <div id="log"></div>
+
+    <!-- Additional JavaScript for logging events -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        logEvent("DOMContentLoaded event fired - HTML parsing complete");
+      });
+
+      window.addEventListener("load", () => {
+        logEvent("Window load event fired - All resources loaded");
+      });
+    </script>
+  </body>
+</html>

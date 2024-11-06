@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Normal Script Loading</title>
+    <style>
+      .log {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
+    </style>
+
+    <!-- Normal script will block parsing -->
+    <script src="normal.js"></script>
+  </head>
+  <body>
+    <h1>Normal Script Loading Demo</h1>
+    <div id="log" class="log"></div>
+
+    <script>
+      logMessage("Script at end of body");
+    </script>
+  </body>
+</html>

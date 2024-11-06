@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Async Script Execution Flow</title>
+    <style>
+      .log-entry {
+        padding: 8px;
+        margin: 5px;
+        background: #f0f0f0;
+        border-left: 4px solid #2196f3;
+      }
+      .parsing {
+        color: #4caf50;
+      }
+      .download {
+        color: #2196f3;
+      }
+      .execute {
+        color: #f44336;
+      }
+    </style>
+
+    <script>
+      // Define logging function first
+      function logEvent(type, message) {
+        console.log(`${type.toUpperCase()}: ${message}`);
+
+        // Only append to DOM if element exists
+        const log = document.getElementById("log");
+        if (log) {
+          const entry = document.createElement("div");
+          entry.className = "log-entry";
+          entry.innerHTML = `
+                    <strong>${new Date().toLocaleTimeString()}</strong> - 
+                    <span class="${type}">${message}</span>`;
+          log.appendChild(entry);
+        }
+      }
+      // Function to dynamically load script after delay
+      function loadScriptAfterDelay(content, delay) {
+        setTimeout(() => {
+          const script = document.createElement("script");
+          script.async = true;
+          script.src = `data:text/javascript,${encodeURIComponent(content)}`;
+          document.head.appendChild(script);
+          logEvent("loading", `Script started loading after ${delay}ms delay`);
+        }, delay);
+      }
+      logEvent("parsing", "Initial HTML parsing started");
+    </script>
+
+    <!-- First async script - simulates a fast-loading script -->
+    <script
+      async
+      src="data:text/javascript,
+    (function() {
+        logEvent('execute', 'Script 1 executing - Will log parsed elements after slight delay');
+        
+        setTimeout(() => {
+            // Log all elements currently in the DOM after a short delay
+         
+            logEvent('execute', 'Script 1 executing - Will block parsing for 2 seconds');
+            const blockStart = Date.now();
+            while(Date.now() - blockStart < 2000) {
+                // Blocking loop
+            }
+            logEvent('execute', 'Script 1 completed - Parsing can resume');
+        }, 50); // Delay by 50ms to allow some body content to be parsed
+    })();
+"
+    ></script>
+
+    <!-- Second async script - simulates a slower-loading script -->
+    <script>
+      // Second script content - will be loaded after 5 seconds
+      const script2Content = `
+            (function() {
+                logEvent('execute', 'Script 2 executing - Will block parsing for 3 second');
+                const blockStart = Date.now();
+                while(Date.now() - blockStart < 3000) {
+                    // This will actually block parsing
+                }
+                logEvent('execute', 'Script 2 completed - Parsing can resume');
+            })();
+        `;
+
+      // Load script 2 after 5 second delay
+      loadScriptAfterDelay(script2Content, 5000);
+    </script>
+  </head>
+  <body>
+    <h1>Async Script Execution Flow</h1>
+    <div id="log"></div>
+
+    <!-- Generate some content to demonstrate parsing -->
+    <script>
+      const totalElements = 20;
+      let currentElement = 0;
+
+      function addElement() {
+        if (currentElement < totalElements) {
+          const div = document.createElement("div");
+          div.textContent = `Parsed element ${currentElement + 1}`;
+          div.style.color = "#666";
+          document.body.appendChild(div);
+
+          logEvent(
+            "parsing",
+            `Parsing element ${currentElement + 1} of ${totalElements}`
+          );
+
+          currentElement++;
+          setTimeout(addElement, 200); // Add elements gradually
+        }
+      }
+
+      addElement(); // Start adding elements
+
+      // Log important events
+      document.addEventListener("DOMContentLoaded", () => {
+        logEvent("parsing", "DOMContentLoaded fired - HTML parsing complete");
+      });
+
+      window.addEventListener("load", () => {
+        logEvent("parsing", "Window load event fired - All resources loaded");
+      });
+    </script>
+  </body>
+</html>
